@@ -1,6 +1,5 @@
 import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest, File } from 'payload'
 
-import { home } from './home'
 import { image1 } from './image-1'
 import { image2 } from './image-2'
 import { imageHero1 } from './image-hero-1'
@@ -11,7 +10,6 @@ import { post3 } from './post-3'
 const collections: CollectionSlug[] = [
   'categories',
   'media',
-  'pages',
   'posts',
 ]
 const globals: GlobalSlug[] = ['header', 'footer']
@@ -252,8 +250,6 @@ export const seed = async ({
     },
   })
 
-  payload.logger.info(`— Seeding pages...`)
-
   payload.logger.info(`— Seeding globals...`)
 
   await Promise.all([
@@ -267,17 +263,7 @@ export const seed = async ({
               label: 'Posts',
               url: '/posts',
             },
-          },
-          {
-            link: {
-              type: 'reference',
-              label: 'Contact',
-              reference: {
-                relationTo: 'pages',
-                value: contactPage.id,
-              },
-            },
-          },
+          }
         ],
       },
     }),
