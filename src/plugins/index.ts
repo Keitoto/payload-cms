@@ -20,28 +20,28 @@ const generateURL: GenerateURL<Post> = ({ doc }) => {
 }
 
 export const plugins: Plugin[] = [
-  redirectsPlugin({
-    collections: ['posts'],
-    overrides: {
-      // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
-      fields: ({ defaultFields }) => {
-        return defaultFields.map((field) => {
-          if ('name' in field && field.name === 'from') {
-            return {
-              ...field,
-              admin: {
-                description: 'You will need to rebuild the website when changing this field.',
-              },
-            }
-          }
-          return field
-        })
-      },
-      hooks: {
-        afterChange: [revalidateRedirects],
-      },
-    },
-  }),
+  // redirectsPlugin({
+  //   collections: ['posts'],
+  //   overrides: {
+  //     // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
+  //     fields: ({ defaultFields }) => {
+  //       return defaultFields.map((field) => {
+  //         if ('name' in field && field.name === 'from') {
+  //           return {
+  //             ...field,
+  //             admin: {
+  //               description: 'You will need to rebuild the website when changing this field.',
+  //             },
+  //           }
+  //         }
+  //         return field
+  //       })
+  //     },
+  //     hooks: {
+  //       afterChange: [revalidateRedirects],
+  //     },
+  //   },
+  // }),
   nestedDocsPlugin({
     collections: ['categories'],
     generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
