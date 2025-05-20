@@ -1,7 +1,8 @@
+import { defaultLexical } from "@/fields/defaultLexical";
 import { GlobalConfig } from "payload";
 
 export const HomePage: GlobalConfig = {
-  slug: "home-page",
+  slug: "homepage",
   label: "Home Page",
   access: {
     read: () => true,
@@ -19,8 +20,9 @@ export const HomePage: GlobalConfig = {
       required: true,
     },
     {
-      name: "content",
+      name: "aboutText",
       type: "richText",
+      editor: defaultLexical,
       required: true,
     }
   ],

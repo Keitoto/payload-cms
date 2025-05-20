@@ -5,6 +5,8 @@ import {
   LinkFeature,
   ParagraphFeature,
   lexicalEditor,
+  HeadingFeature,
+  UnorderedListFeature,
   UnderlineFeature,
   type LinkFields,
 } from '@payloadcms/richtext-lexical'
@@ -14,6 +16,8 @@ export const defaultLexical = lexicalEditor({
     ParagraphFeature(),
     UnderlineFeature(),
     BoldFeature(),
+    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+    UnorderedListFeature(),
     ItalicFeature(),
     LinkFeature({
       enabledCollections: ['posts'],

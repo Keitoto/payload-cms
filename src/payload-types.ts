@@ -93,12 +93,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
-    'home-page': HomePage;
+    homepage: Homepage;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
-    'home-page': HomePageSelect<false> | HomePageSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
   };
   locale: null;
   user: User & {
@@ -745,13 +745,13 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home-page".
+ * via the `definition` "homepage".
  */
-export interface HomePage {
+export interface Homepage {
   id: number;
   description: string;
   heroImage: number | Media;
-  content: {
+  aboutText: {
     root: {
       type: string;
       children: {
@@ -817,12 +817,12 @@ export interface FooterSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home-page_select".
+ * via the `definition` "homepage_select".
  */
-export interface HomePageSelect<T extends boolean = true> {
+export interface HomepageSelect<T extends boolean = true> {
   description?: T;
   heroImage?: T;
-  content?: T;
+  aboutText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

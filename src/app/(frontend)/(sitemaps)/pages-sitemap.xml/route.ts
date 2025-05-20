@@ -13,7 +13,7 @@ const getPagesSitemap = unstable_cache(
 
     // Fetch the homepage global
     const homepage = await payload.findGlobal({
-      slug: 'home-page',
+      slug: 'homepage',
       draft: false,
     })
 
