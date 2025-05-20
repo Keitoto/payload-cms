@@ -11,14 +11,10 @@ const getPagesSitemap = unstable_cache(
       process.env.VERCEL_PROJECT_PRODUCTION_URL ||
       'https://example.com'
 
-    // Fetch the homepage document
-    const results = await payload.find({
-      collection: 'homepage',
-      overrideAccess: false,
+    // Fetch the homepage global
+    const homepage = await payload.findGlobal({
+      slug: 'home-page',
       draft: false,
-      depth: 0,
-      limit: 1,
-      pagination: false,
     })
 
     const dateFallback = new Date().toISOString()
@@ -35,15 +31,14 @@ const getPagesSitemap = unstable_cache(
     ]
 
     // Only add homepage to sitemap
-    const sitemap =
-      results.docs && results.docs.length > 0
-        ? [
-            {
-              loc: `${SITE_URL}/`,
-              lastmod: results.docs[0]?.updatedAt || dateFallback,
-            },
-          ]
-        : []
+    const sitemap = homepage
+      ? [
+          {
+            loc: `${SITE_URL}/`,
+            lastmod: homepage.updatedAt || dateFallback,
+          },
+        ]
+      : []
 
     return [...defaultSitemap, ...sitemap]
   },
